@@ -1,0 +1,13 @@
+{
+  "name": "EnerSmart",
+  "description": "Meter Recharge Platform",
+  "keywords": [
+    "enersmart",
+    "go",
+    "meter",
+    "recharge",
+    "platform"
+  ],
+  "website": "http://github.com/jayluxferro/enersmart",
+  "repository": "http://github.com/jayluxferro/enersmart"
+}
