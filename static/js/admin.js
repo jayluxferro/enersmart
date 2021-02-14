@@ -571,7 +571,7 @@ function processRequest(){
   const phone = $('#phone').val().trim()
   const voucher = $('#voucher').val().trim()
   const amount = $('#amount').val().trim()
-  if(meter.length < 6){
+  if(meter.length < 8){
     displayWarning('Invalid Meter Number')
     return
   }
