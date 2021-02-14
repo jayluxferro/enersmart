@@ -32,6 +32,7 @@ func main() {
 	})
 
 	// receive data
+  router.POST("/balance", balanceHandler)
 	router.POST("/", rechargeHandler)
 
 	router.Run(":" + port)
@@ -39,6 +40,13 @@ func main() {
 
 func unAuthorized(c *gin.Context) {
 	c.JSON(http.StatusForbidden, gin.H{"error": "unauthorized"})
+}
+
+func balanceHandler(c *gin.Context){
+	meterNumber := c.PostForm("meter")
+	params := ecg.GetParams(meterNumber, "", "", "", "")
+  res := ecg.InitGetMeterBalance(params)
+  c.String(http.StatusOK, res)
 }
 
 func rechargeHandler(c *gin.Context) {

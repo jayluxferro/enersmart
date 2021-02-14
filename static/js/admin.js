@@ -564,6 +564,25 @@ function network(n){
   }
 }
 
+function processBalance(){
+  const meter = $('#meter').val().trim()
+  if(meter.length < 8){
+    displayWarning('Invalid Meter Number')
+    return
+  }
+
+  $('#loader').show()
+  $('#rechargeBtnView').hide()
+  $('#log').val('')
+  // send data
+  $.post('/balance', {
+    meter
+  }, data => {
+    $('#loader').hide()
+    $('#rechargeBtnView').show()
+    $('#log').val(data)
+  })
+}
 
 function processRequest(){
   const meter = $('#meter').val().trim()
@@ -597,7 +616,6 @@ function processRequest(){
     voucher,
     amount
   }, data => {
-    console.log(data)
     $('#loader').hide()
     $('#rechargeBtnView').show()
     $('#log').val(data)
