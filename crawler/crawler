@@ -1,0 +1,3 @@
+#!/bin/bash
+cd ~/dev/web/enersmart/crawler
+./crawler.py
