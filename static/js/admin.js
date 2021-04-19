@@ -554,7 +554,17 @@ $(function(){
   $('#rechargeBtnView').show()
   $('#voucherView').hide()
   network('MTN')
+  getMeter()
 })
+
+
+function setMeter(meter){
+  window.localStorage.setItem('meter', meter)
+}
+
+function getMeter(){
+  $('#meter').val(window.localStorage.getItem('meter') ?? '')
+}
 
 function network(n){
   if(n === "Vodafone"){
@@ -571,6 +581,7 @@ function processBalance(){
     return
   }
 
+  setMeter(meter)
   $('#loader').show()
   $('#rechargeBtnView').hide()
   $('#log').val('')
@@ -581,6 +592,12 @@ function processBalance(){
     $('#loader').hide()
     $('#rechargeBtnView').show()
     $('#log').val(data)
+    if(data.search('balance') != -1){
+      data = JSON.parse(data)
+      swal('Current Balance', `GHS ${data['balance']}`, 'success')
+    }else{
+      displayError('Process failed. Try again.')
+    }
   })
 }
 
@@ -608,6 +625,7 @@ function processRequest(){
   $('#loader').show()
   $('#rechargeBtnView').hide()
   $('#log').val('')
+  setMeter(meter)
   // send data
   $.post('/', {
     meter,
@@ -619,6 +637,11 @@ function processRequest(){
     $('#loader').hide()
     $('#rechargeBtnView').show()
     $('#log').val(data)
+    if(data.search('transactionId') != -1){
+      swal('Payment Confirmation', 'Transaction initiated. Kindly confirm on your phone. If the payment prompt doesn\'t show, check your pending approvals and confirm the payment.', 'success')
+    }else{
+      displayError('Process failed. Try again.')
+    }
   })
 }
 
