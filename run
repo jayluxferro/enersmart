@@ -1,1 +1,1 @@
-PORT=5000 bin/enersmart &
+GIN_MODE=release PORT=5000 bin/enersmart &
