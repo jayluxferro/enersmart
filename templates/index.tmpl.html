@@ -28,7 +28,33 @@
             <b>*</b> To recharge your meter, fill in the details and click '<b>Recharge</b>'.
           </div>
 
-          <div class="form">
+          <div class="form" id="otpForm">
+            <div class="input-group" id="meterView">
+              <label for="meter">Please enter the Code sent to your number:</label>
+              <div class="form-line">
+                <input type="number" class="form-control" id="otp" name="otp" placeholder="OTP Code. eg 12345"/>
+              </div>
+            </div>
+            
+            <div class="input-group" id="otpBtnView">
+              <div style="text-align: center;">
+                <button class="btn btn-xs btn-info waves-effect" onclick="sendOTP()">
+                  <i class="material-icons">repeat</i>
+                  <span>Resend Code</span>
+                </button>&nbsp;&nbsp;
+                <button class="btn btn-xs btn-success waves-effect" onclick="verifyOTP()">
+                  <i class="material-icons">thumb_up</i>
+                  <span>Verify Code</span>
+                </button>&nbsp;&nbsp;
+                <button class="btn btn-xs btn-danger waves-effect" onclick="exitOTP()">
+                  <i class="material-icons">close</i>
+                  <span>Exit</span>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="form" id="payForm">
             <div class="input-group" id="meterView">
               <label for="meter">Meter Number:</label>
               <div class="form-line">
@@ -80,21 +106,24 @@
                 </button>
               </div>
             </div>
-
-            <div class="input-group" id="loader">
-              <div style="text-align: center;">
-                <img alt='progress' src="/static/images/loader.gif" style="height: 20px; margin-top: 10px;"/>
-              </div>
-            </div>
-
-            <div class="input-group" id="logView">
-              <label for="log">Log:</label>
-              <div class="form-line">
-                <textarea id="log" name="log" class="form-control" style="border: 1px solid #ccc; padding: 2px;" readonly="true" rows=7></textarea>
-              </div>
-            </div>
-
           </div>
+
+          <!-- loader/logger -->
+          <div class="input-group" id="loader">
+            <div style="text-align: center;">
+              <img alt='progress' src="/static/images/loader.gif" style="height: 20px; margin-top: 10px;"/><br/>
+              <span style="color: red; margin: 10px;" id="loader-text"><span>
+            </div>
+          </div>
+
+          <div class="input-group" id="logView">
+            <label for="log">Log:</label>
+            <div class="form-line">
+              <textarea id="log" name="log" class="form-control" style="border: 1px solid #ccc; padding: 2px;" readonly="true" rows=7></textarea>
+            </div>
+          </div>
+          <!--/loader/logger -->
+
         </div>
       </div>
     </div>

@@ -32,6 +32,8 @@ func main() {
 	})
 
 	// receive data
+	router.POST("/verify-otp", verifyOTPHandler)
+	router.POST("/send-otp", sendOTPHandler)
   router.POST("/balance", balanceHandler)
 	router.POST("/", rechargeHandler)
 
@@ -42,6 +44,27 @@ func unAuthorized(c *gin.Context) {
 	c.JSON(http.StatusForbidden, gin.H{"error": "unauthorized"})
 }
 
+func verifyOTPHandler(c *gin.Context){
+	params := getDefaultParams(c)
+	otp := c.PostForm("otp")
+	res := ecg.VerifyOTP(params, otp)
+	if res {
+		c.String(http.StatusOK, "success")
+	}else {
+		c.String(http.StatusOK, "error")
+	}
+}
+
+func sendOTPHandler(c *gin.Context){
+	params := getDefaultParams(c)
+	res := ecg.SendOTP(params)
+	if res {
+		c.String(http.StatusOK, "success")
+	}else {
+		c.String(http.StatusOK, "error")
+	}
+}
+
 func balanceHandler(c *gin.Context){
 	meterNumber := c.PostForm("meter")
 	params := ecg.GetParams(meterNumber, "", "", "", "")
@@ -49,13 +72,17 @@ func balanceHandler(c *gin.Context){
   c.String(http.StatusOK, res)
 }
 
-func rechargeHandler(c *gin.Context) {
+func getDefaultParams(c *gin.Context) *ecg.Params{
 	meterNumber := c.PostForm("meter")
 	network := c.PostForm("network")
 	phone := c.PostForm("phone")
 	voucher := c.PostForm("voucher")
 	amount := c.PostForm("amount")
-	params := ecg.GetParams(meterNumber, phone, network, voucher, amount)
+	return ecg.GetParams(meterNumber, phone, network, voucher, amount)
+}
+
+func rechargeHandler(c *gin.Context) {
+	params := getDefaultParams(c)
 	res := ecg.InitMakePayment(params)
 	c.String(http.StatusOK, res)
 }
