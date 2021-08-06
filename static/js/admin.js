@@ -22,11 +22,13 @@ function getMeter(){
 }
 
 function network(n){
+  $('#voucherView').hide()
+  /*
   if(n === "Vodafone"){
-    $('#voucherView').show()
   }else {
     $('#voucherView').hide()
   }
+  */
 }
 
 function processBalance(){
