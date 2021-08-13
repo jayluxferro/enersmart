@@ -8,6 +8,7 @@ $(function(){
   $('#voucherView').hide()
   $('#otpForm').hide()
   $('#payForm').show()
+  $('#logView').hide()
   network('MTN')
   getMeter()
 })
