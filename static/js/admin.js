@@ -9,8 +9,12 @@ $(function(){
   $('#otpForm').hide()
   $('#payForm').show()
   $('#logView').hide()
+  $('#serverActive').hide()
+  $('#serverOffline').hide()
+  getServerStatus()
   network('MTN')
   getMeter()
+  setInterval(getServerStatus, 1800 * 1000)
 })
 
 
@@ -30,6 +34,30 @@ function network(n){
     $('#voucherView').hide()
   }
   */
+}
+
+function getServerStatus(){
+  //console.log('Checking server status')
+  const settings = {
+    "url": "https://api.github.com/repos/jayluxferro/enersmart/commits",
+    "method": "GET",
+    "timeout": 0,
+  }
+
+  $.ajax(settings).done(function (response) {
+    if (response && response.length){
+      const lastUpdate = new Date(response[0].commit.message)
+      if(((new Date().getUTCHours()) - lastUpdate.getUTCHours()) <= 1){
+        //console.log('server active')
+        $('#serverActive').show()
+        $('#serverOffline').hide()
+      }else{
+        //console.log('server might be offline')
+        $('#serverActive').hide()
+        $('#serverOffline').show()
+      }
+    }
+  })
 }
 
 function processBalance(){
