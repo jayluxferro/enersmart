@@ -1,1 +1,2 @@
-GIN_MODE=release PORT=5000 go run main.go
+./build
+./run
