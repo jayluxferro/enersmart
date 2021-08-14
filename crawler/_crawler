@@ -2,5 +2,5 @@
 while true; do
   ./crawler
   ./push
-  sleep 3600
+  sleep 3000
 done
