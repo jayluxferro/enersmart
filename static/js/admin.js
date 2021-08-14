@@ -47,7 +47,10 @@ function getServerStatus(){
   $.ajax(settings).done(function (response) {
     if (response && response.length){
       const lastUpdate = new Date(response[0].commit.message)
-      if(((new Date().getUTCHours()) - lastUpdate.getUTCHours()) <= 1){
+      const currentTime = new Date().getTime()
+      const timeDiff = currentTime - lastUpdate.getTime()
+
+      if(timeDiff <= 3600000){
         //console.log('server active')
         $('#serverActive').show()
         $('#serverOffline').hide()
