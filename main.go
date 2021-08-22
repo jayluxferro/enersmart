@@ -31,6 +31,9 @@ func main() {
     })
 	})
 
+	// get data
+	router.GET("/avl", getAVLDataHandler)
+
 	// receive data
 	router.POST("/verify-otp", verifyOTPHandler)
 	router.POST("/send-otp", sendOTPHandler)
@@ -42,6 +45,15 @@ func main() {
 
 func unAuthorized(c *gin.Context) {
 	c.JSON(http.StatusForbidden, gin.H{"error": "unauthorized"})
+}
+
+func getAVLDataHandler(c *gin.Context){
+	data, err := os.ReadFile("data/avl.txt")
+	if err != nil {
+		c.String(http.StatusOK, "[0, 0, 0, 0, 0, 0, 0]")
+	}else {
+		c.String(http.StatusOK, string(data))
+	}
 }
 
 func verifyOTPHandler(c *gin.Context){

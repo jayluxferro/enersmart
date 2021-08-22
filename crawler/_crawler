@@ -1,6 +1,7 @@
 #!/bin/bash
 while true; do
   ./crawler
+  ./avl
   ./push
   sleep 3000
 done

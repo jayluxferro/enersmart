@@ -16,129 +16,145 @@
         </div>
       </div>
     </div>
-    <div class="login-box">
-      <div class="card">
-        <div class="body">
-          <div class="msg" style="margin-top: 15px;">
-            Fill in the details to recharge your EnerSmart/Holley meter.
-          </div>
-          <div style="text-align: center; margin-bottom: 20px;" id="serverActive">
-            <button class="btn btn-xs bg-green waves-effect" style="border-radius: 5px;">
-              <i class="material-icons">info</i>
-              <span>ECG Server is online.</span>
-            </button>
-          </div>
-          <div style="text-align: center; margin-bottom: 20px;" id="serverOffline">
-            <button class="btn btn-xs btn-danger waves-effect" style="border-radius: 5px;">
-              <i class="material-icons">info</i>
-              <span>ECG Server is offline.</span>
-            </button>
-          </div>
-          <div class="msg" style="margin-top: 15px; text-align: left">
-            <h4>Instructions</h4>
-            <b>*</b> To check your meter balance just enter your meter number and click '<b>Get Balance</b>'.<br/>
-            <b>*</b> To recharge your meter, fill in the details and click '<b>Recharge</b>'.
-          </div>
-
-          <div class="form" id="otpForm">
-            <div class="input-group" id="meterView">
-              <label for="meter">Please enter the Code sent to your number:</label>
-              <div class="form-line">
-                <input type="number" class="form-control" id="otp" name="otp" placeholder="OTP Code. eg 12345"/>
+    <div class="row" style="margin: 5px;">
+      <div class="col-md-5 col-lg-5">
+        <div class="card">
+            <div class="body">
+              <div class="msg" style="margin-top: 15px;">
+                Fill in the details to recharge your EnerSmart/Holley meter.
               </div>
-            </div>
-            
-            <div class="input-group" id="otpBtnView">
-              <div style="text-align: center;">
-                <button class="btn btn-xs btn-info waves-effect" onclick="sendOTP()">
-                  <i class="material-icons">repeat</i>
-                  <span>Resend Code</span>
-                </button>&nbsp;&nbsp;
-                <button class="btn btn-xs btn-success waves-effect" onclick="verifyOTP()">
-                  <i class="material-icons">thumb_up</i>
-                  <span>Verify Code</span>
-                </button>&nbsp;&nbsp;
-                <button class="btn btn-xs btn-danger waves-effect" onclick="exitOTP()">
-                  <i class="material-icons">close</i>
-                  <span>Exit</span>
-                </button>
-              </div>
-            </div>
-          </div>
-
-          <div class="form" id="payForm">
-            <div class="input-group" id="meterView">
-              <label for="meter">Meter Number:</label>
-              <div class="form-line">
-                <input type="text" class="form-control" id="meter" name="meter" placeholder="Meter Number e.g. 00014152852 or 14152852" auto-focus="true" />
-              </div>
-            </div>
-
-            <div class="input-group" id="networkView">
-              <label for="network">Network:</label>
-              <div class="form-line">
-                <select id="network" name="network" class="form-control" onchange="network(this.value)">
-                  <option value="Vodafone">Vodafone</option>
-                  <option value="MTN">MTN</option>
-                  <option value="AirtelTigo">AirtelTigo</option>
-                </select>
-              </div>
-            </div>
-
-            <div class="input-group" id="phoneView">
-              <label for="phone">Phone Number:</label>
-              <div class="form-line">
-                <input type="text" minlength=10 maxlength=10 id="phone" name="phone" class="form-control" placeholder="e.g. 0200000000" />
-              </div>
-            </div>
-
-            <div class="input-group" id="voucherView">
-              <label for="voucher">Voucher:</label>
-              <div class="form-line">
-                <input type="hidden" value="123456" id="voucher" name="voucher" placeholder="Voucher"/>
-              </div>
-            </div>
-
-            <div class="input-group" id="amountView">
-              <label for="amount">Amount (GHC):</label>
-              <div class="form-line">
-                <input type="number" class="form-control" id="amount" name="amount" placeholder="Amount e.g. 1" min=1 />
-              </div>
-            </div>
-
-            <div class="input-group" id="rechargeBtnView">
-              <div style="text-align: center;">
-                <button class="btn btn-xs btn-info waves-effect" onclick="processBalance()">
+              <div style="text-align: center; margin-bottom: 20px;" id="serverActive">
+                <button class="btn btn-xs bg-green waves-effect" style="border-radius: 5px;">
                   <i class="material-icons">info</i>
-                  <span>Get Balance</span>
-                </button>&nbsp;&nbsp;
-                <button class="btn btn-xs btn-success waves-effect" onclick="processRequest()">
-                  <i class="material-icons">thumb_up</i>
-                  <span>Recharge</span>
+                  <span>ECG Server is online.</span>
                 </button>
               </div>
+              <div style="text-align: center; margin-bottom: 20px;" id="serverOffline">
+                <button class="btn btn-xs btn-danger waves-effect" style="border-radius: 5px;">
+                  <i class="material-icons">info</i>
+                  <span>ECG Server is offline.</span>
+                </button>
+              </div>
+              <div class="msg" style="margin-top: 15px; text-align: left">
+                <h4>Instructions</h4>
+                <b>*</b> To check your meter balance just enter your meter number and click '<b>Get Balance</b>'.<br/>
+                <b>*</b> To recharge your meter, fill in the details and click '<b>Recharge</b>'.
+              </div>
+
+              <div class="form" id="otpForm">
+                <div class="input-group" id="meterView">
+                  <label for="meter">Please enter the Code sent to your number:</label>
+                  <div class="form-line">
+                    <input type="number" class="form-control" id="otp" name="otp" placeholder="OTP Code. eg 12345"/>
+                  </div>
+                </div>
+                
+                <div class="input-group" id="otpBtnView">
+                  <div style="text-align: center;">
+                    <button class="btn btn-xs btn-info waves-effect" onclick="sendOTP()">
+                      <i class="material-icons">repeat</i>
+                      <span>Resend Code</span>
+                    </button>&nbsp;&nbsp;
+                    <button class="btn btn-xs btn-success waves-effect" onclick="verifyOTP()">
+                      <i class="material-icons">thumb_up</i>
+                      <span>Verify Code</span>
+                    </button>&nbsp;&nbsp;
+                    <button class="btn btn-xs btn-danger waves-effect" onclick="exitOTP()">
+                      <i class="material-icons">close</i>
+                      <span>Exit</span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form" id="payForm">
+                <div class="input-group" id="meterView">
+                  <label for="meter">Meter Number:</label>
+                  <div class="form-line">
+                    <input type="text" class="form-control" id="meter" name="meter" placeholder="Meter Number e.g. 00014152852 or 14152852" auto-focus="true" />
+                  </div>
+                </div>
+
+                <div class="input-group" id="networkView">
+                  <label for="network">Network:</label>
+                  <div class="form-line">
+                    <select id="network" name="network" class="form-control" onchange="network(this.value)">
+                      <option value="Vodafone">Vodafone</option>
+                      <option value="MTN">MTN</option>
+                      <option value="AirtelTigo">AirtelTigo</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="input-group" id="phoneView">
+                  <label for="phone">Phone Number:</label>
+                  <div class="form-line">
+                    <input type="text" minlength=10 maxlength=10 id="phone" name="phone" class="form-control" placeholder="e.g. 0200000000" />
+                  </div>
+                </div>
+
+                <div class="input-group" id="voucherView">
+                  <label for="voucher">Voucher:</label>
+                  <div class="form-line">
+                    <input type="hidden" value="123456" id="voucher" name="voucher" placeholder="Voucher"/>
+                  </div>
+                </div>
+
+                <div class="input-group" id="amountView">
+                  <label for="amount">Amount (GHC):</label>
+                  <div class="form-line">
+                    <input type="number" class="form-control" id="amount" name="amount" placeholder="Amount e.g. 1" min=1 />
+                  </div>
+                </div>
+
+                <div class="input-group" id="rechargeBtnView">
+                  <div style="text-align: center;">
+                    <button class="btn btn-xs btn-info waves-effect" onclick="processBalance()">
+                      <i class="material-icons">info</i>
+                      <span>Get Balance</span>
+                    </button>&nbsp;&nbsp;
+                    <button class="btn btn-xs btn-success waves-effect" onclick="processRequest()">
+                      <i class="material-icons">thumb_up</i>
+                      <span>Recharge</span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- loader/logger -->
+              <div class="input-group" id="loader">
+                <div style="text-align: center;">
+                  <img alt='progress' src="/static/images/loader.gif" style="height: 20px; margin-top: 10px;"/><br/>
+                  <span style="color: red; margin: 10px;" id="loader-text"><span>
+                </div>
+              </div>
+
+              <div class="input-group" id="logView">
+                <label for="log">Log:</label>
+                <div class="form-line">
+                  <textarea id="log" name="log" class="form-control" style="border: 1px solid #ccc; padding: 2px;" readonly="true" rows=7></textarea>
+                </div>
+              </div>
+              <!--/loader/logger -->
+
             </div>
           </div>
+        </div> <!-- payment view-->
 
-          <!-- loader/logger -->
-          <div class="input-group" id="loader">
-            <div style="text-align: center;">
-              <img alt='progress' src="/static/images/loader.gif" style="height: 20px; margin-top: 10px;"/><br/>
-              <span style="color: red; margin: 10px;" id="loader-text"><span>
+        <div class="col-md-7 col-lg-7"> <!-- second column -->
+            <div class="card">
+              <div class="body">
+                <div>
+                  <canvas id="myChart"></canvas>
+                </div>
+              </div>
             </div>
-          </div>
-
-          <div class="input-group" id="logView">
-            <label for="log">Log:</label>
-            <div class="form-line">
-              <textarea id="log" name="log" class="form-control" style="border: 1px solid #ccc; padding: 2px;" readonly="true" rows=7></textarea>
-            </div>
-          </div>
-          <!--/loader/logger -->
-
+          </div><!--/end of send column -->
         </div>
+
       </div>
-    </div>
+
+
     <!-- jquery -->
     <script src="/static/plugins/jquery/jquery.min.js"></script>
     <!-- Bootstrap Core Js -->
@@ -146,6 +162,9 @@
 
     <!-- alertify js -->
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+    <!-- chart js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
     <!-- Custom Js -->
     <script src="/static/js/admin.js"></script>
