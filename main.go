@@ -7,6 +7,7 @@ import (
 	"log"
 	"net/http"
 	"os"
+	"io/ioutil"
 )
 
 func main() {
@@ -48,7 +49,7 @@ func unAuthorized(c *gin.Context) {
 }
 
 func getAVLDataHandler(c *gin.Context){
-	data, err := os.ReadFile("data/avl.txt")
+	data, err := ioutil.ReadFile("data/avl.txt")
 	if err != nil {
 		c.String(http.StatusOK, "[0, 0, 0, 0, 0, 0, 0]")
 	}else {
