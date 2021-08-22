@@ -20,7 +20,7 @@ $(function(){
 
 
 function loadAvailabilityGraph(){
-  $.get("/avl", d => {
+  $.post("/avl", d => {
     if(d){
       const avlData = JSON.parse(d)
       const labels = [

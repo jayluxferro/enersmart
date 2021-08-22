@@ -33,7 +33,7 @@ func main() {
 	})
 
 	// get data
-	router.GET("/avl", getAVLDataHandler)
+	router.POST("/avl", getAVLDataHandler)
 
 	// receive data
 	router.POST("/verify-otp", verifyOTPHandler)
