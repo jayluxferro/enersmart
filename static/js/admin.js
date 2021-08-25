@@ -27,7 +27,7 @@ function loadAvailabilityGraph(){
         'Sunday',
         'Monday',
         'Tuesday',
-        'Wednesay',
+        'Wednesday',
         'Thursday',
         'Friday',
         'Saturday',
